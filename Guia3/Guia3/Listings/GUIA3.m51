@@ -1,9 +1,9 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    05/10/2020  22:19:58  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    05/10/2020  22:45:29  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
-C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\guia3_main.obj TO .\Objects\GUIA3 PRINT (.\Listings\GUIA3.m
->> 51) RAMSIZE (256)
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\guia3_main.obj, .\Objects\Init_Device.obj TO .\Objects\GUIA
+>> 3 PRINT (.\Listings\GUIA3.m51) RAMSIZE (256)
 
 
 MEMORY MODEL: SMALL
@@ -12,6 +12,14 @@ MEMORY MODEL: SMALL
 INPUT MODULES INCLUDED:
   .\Objects\STARTUP.obj (?C_STARTUP)
   .\Objects\guia3_main.obj (GUIA3_MAIN)
+  .\Objects\Init_Device.obj (INIT_DEVICE)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (PRINTF)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CSTPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?PLDIIDATA)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CCASE)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (PUTCHAR)
 
 
 LINK MAP OF MODULE:  .\Objects\GUIA3 (?C_STARTUP)
@@ -22,23 +30,41 @@ LINK MAP OF MODULE:  .\Objects\GUIA3 (?C_STARTUP)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            IDATA   0008H     0001H     UNIT         ?STACK
+            DATA    0008H     0014H     UNIT         _DATA_GROUP_
+                    001CH     0004H                  *** GAP ***
+            BIT     0020H.0   0001H.1   UNIT         _BIT_GROUP_
+                    0021H.1   0000H.7                *** GAP ***
+            IDATA   0022H     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
-            CODE    0003H     0006H     UNIT         ?C_C51STARTUP
-            CODE    0009H     0002H     UNIT         ?PR?MAIN?GUIA3_MAIN
+            CODE    0003H     035CH     UNIT         ?PR?PRINTF?PRINTF
+            CODE    035FH     008EH     UNIT         ?C?LIB_CODE
+            CODE    03EDH     0027H     UNIT         ?PR?PUTCHAR?PUTCHAR
+            CODE    0414H     000BH     UNIT         ?PR?MAIN?GUIA3_MAIN
+            CODE    041FH     0009H     UNIT         ?CO?GUIA3_MAIN
+            CODE    0428H     0006H     UNIT         ?C_C51STARTUP
 
 
 
 OVERLAY MAP OF MODULE:   .\Objects\GUIA3 (?C_STARTUP)
 
 
-SEGMENT
-  +--> CALLED SEGMENT
----------------------
-?C_C51STARTUP
+SEGMENT                           BIT_GROUP          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH     START    LENGTH
+------------------------------------------------------------------
+?C_C51STARTUP                  -----    -----      -----    -----
   +--> ?PR?MAIN?GUIA3_MAIN
+
+?PR?MAIN?GUIA3_MAIN            -----    -----      -----    -----
+  +--> ?CO?GUIA3_MAIN
+  +--> ?PR?PRINTF?PRINTF
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/10/2020  22:45:29  PAGE 2
+
+
+
+?PR?PRINTF?PRINTF              0020H.0  0001H.1    0008H    0014H
+  +--> ?PR?PUTCHAR?PUTCHAR
 
 
 
@@ -48,8 +74,8 @@ SYMBOL TABLE OF MODULE:  .\Objects\GUIA3 (?C_STARTUP)
   ----------------------------------
 
   -------         MODULE        ?C_STARTUP
-  C:0003H         SEGMENT       ?C_C51STARTUP
-  I:0008H         SEGMENT       ?STACK
+  C:0428H         SEGMENT       ?C_C51STARTUP
+  I:0022H         SEGMENT       ?STACK
   C:0000H         PUBLIC        ?C_STARTUP
   D:00E0H         SYMBOL        ACC
   D:00F0H         SYMBOL        B
@@ -59,9 +85,6 @@ SYMBOL TABLE OF MODULE:  .\Objects\GUIA3 (?C_STARTUP)
   N:0100H         SYMBOL        IBPSTACKTOP
   N:0080H         SYMBOL        IDATALEN
   N:0000H         SYMBOL        PBPSTACK
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/10/2020  22:19:58  PAGE 2
-
-
   N:0100H         SYMBOL        PBPSTACKTOP
   N:0000H         SYMBOL        PDATALEN
   N:0000H         SYMBOL        PDATASTART
@@ -69,14 +92,14 @@ SYMBOL TABLE OF MODULE:  .\Objects\GUIA3 (?C_STARTUP)
   N:0000H         SYMBOL        PPAGEENABLE
   D:00A0H         SYMBOL        PPAGE_SFR
   D:0081H         SYMBOL        SP
-  C:0003H         SYMBOL        STARTUP1
+  C:0428H         SYMBOL        STARTUP1
   N:0000H         SYMBOL        XBPSTACK
   N:0000H         SYMBOL        XBPSTACKTOP
   N:0000H         SYMBOL        XDATALEN
   N:0000H         SYMBOL        XDATASTART
   C:0000H         LINE#         126
-  C:0003H         LINE#         185
-  C:0006H         LINE#         196
+  C:0428H         LINE#         185
+  C:042BH         LINE#         196
   -------         ENDMOD        ?C_STARTUP
 
   -------         MODULE        GUIA3_MAIN
@@ -91,19 +114,81 @@ SYMBOL TABLE OF MODULE:  .\Objects\GUIA3 (?C_STARTUP)
   D:00B8H         PUBLIC        IP
   D:00C0H         PUBLIC        SMB0CN
   D:00C0H         PUBLIC        SMB1CN
-  C:0009H         PUBLIC        main
+  C:0414H         PUBLIC        main
+  D:00F8H         PUBLIC        SPI0CN
+  D:0088H         PUBLIC        TCON
+  D:00C8H         PUBLIC        TMR2CN
+  D:00C8H         PUBLIC        TMR5CN
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/10/2020  22:45:29  PAGE 3
+
+
+  D:0098H         PUBLIC        SCON0
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          MAIN
+  C:0414H         LINE#         5
+  C:0414H         LINE#         6
+  C:0414H         LINE#         7
+  C:041DH         LINE#         9
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        GUIA3_MAIN
+
+  -------         MODULE        INIT_DEVICE
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00E8H         PUBLIC        ADC0CN
+  D:00A8H         PUBLIC        IE
+  D:00D8H         PUBLIC        PCA0CN
+  D:00B8H         PUBLIC        IP
+  D:00C0H         PUBLIC        SMB0CN
+  D:00C0H         PUBLIC        SMB1CN
   D:00F8H         PUBLIC        SPI0CN
   D:0088H         PUBLIC        TCON
   D:00C8H         PUBLIC        TMR2CN
   D:00C8H         PUBLIC        TMR5CN
   D:0098H         PUBLIC        SCON0
   D:00D0H         PUBLIC        PSW
-  -------         PROC          MAIN
-  C:0009H         LINE#         5
-  C:0009H         LINE#         6
-  C:0009H         LINE#         8
-  -------         ENDPROC       MAIN
-  -------         ENDMOD        GUIA3_MAIN
+  -------         ENDMOD        INIT_DEVICE
 
-Program Size: data=9.0 xdata=0 code=11
+  -------         MODULE        PRINTF
+  D:0008H         PUBLIC        ?_PRINTF517?BYTE
+  D:0008H         PUBLIC        ?_PRINTF?BYTE
+  D:0008H         PUBLIC        ?_SPRINTF517?BYTE
+  D:0008H         PUBLIC        ?_SPRINTF?BYTE
+  C:0065H         PUBLIC        _PRINTF
+  C:0065H         PUBLIC        _PRINTF517
+  C:005FH         PUBLIC        _SPRINTF
+  C:005FH         PUBLIC        _SPRINTF517
+  -------         ENDMOD        PRINTF
+
+  -------         MODULE        ?C?CLDPTR
+  C:035FH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        ?C?CLDOPTR
+  C:0378H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        ?C?CSTPTR
+  C:03A5H         PUBLIC        ?C?CSTPTR
+  -------         ENDMOD        ?C?CSTPTR
+
+  -------         MODULE        ?C?PLDIIDATA
+  C:03B7H         PUBLIC        ?C?PLDIIDATA
+  -------         ENDMOD        ?C?PLDIIDATA
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/10/2020  22:45:29  PAGE 4
+
+
+  -------         MODULE        ?C?CCASE
+  C:03C7H         PUBLIC        ?C?CCASE
+  -------         ENDMOD        ?C?CCASE
+
+  -------         MODULE        PUTCHAR
+  C:03EDH         PUBLIC        _PUTCHAR
+  -------         ENDMOD        PUTCHAR
+
+Program Size: data=30.1 xdata=0 code=1070
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
