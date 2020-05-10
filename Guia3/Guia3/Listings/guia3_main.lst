@@ -1,0 +1,36 @@
+C51 COMPILER V9.59.0.0   GUIA3_MAIN                                                        05/10/2020 22:18:36 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE GUIA3_MAIN
+OBJECT MODULE PLACED IN .\Objects\guia3_main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE guia3_main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listing
+                    -s\guia3_main.lst) TABS(2) OBJECT(.\Objects\guia3_main.obj)
+
+line level    source
+
+   1          #include <REG51F380.H>
+   2          
+   3          
+   4          
+   5          void main(void)
+   6          {
+   7   1        
+   8   1        while(1);
+   9   1      }
+  10          
+  11          
+  12          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =      2    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\guia3_main.obj" 
+TO ".\Objects\GUIA3" 
+PRINT(".\Listings\GUIA3.m51") RAMSIZE(256) 
